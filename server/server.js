@@ -17,7 +17,7 @@ app.use(express.json())
 //routes
 app.use('/api/users', userRoutes)
 
-//middleware
+//middleware (error middleware must come after routes)
 app.use(errorMiddleware)
 
 //server start listening 

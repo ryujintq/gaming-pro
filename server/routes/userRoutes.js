@@ -2,7 +2,7 @@ import express from 'express'
 import User from '../models/userModal.js'
 import bcrypt from 'bcrypt'
 import createToken from '../utils/createToken.js'
-import { errorInvalidCredentials } from '../utils/errors.js'
+import { errorInvalidCredentials, errorUserExists } from '../utils/errors.js'
 import asyncHandler from '../middleware/asyncMiddleware.js'
 
 const router = express.Router()
@@ -30,15 +30,11 @@ router.post('/login', asyncHandler(async (req, res, next) => {
 //body      firstName, lastName, email, password
 //access    public
 //route     /api/users/signup
-router.post('/signup', asyncHandler(async (req, res) => {
+router.post('/signup', asyncHandler(async (req, res, next) => {
     const { firstName, lastName, email, password } = req.body
-    let user = await User.findOne(email).lean()
+    let user = await User.findOne({ email }).lean()
 
-    if (user) {
-        next(errorInvalidCredentials())
-    }
-
-    user = new User({ firstName, lastName, email, password: await bcrypt.hash(password, 10) })
+    user = new User({ firstName, lastName, email, password: password ? await bcrypt.hash(password, 10) : null })
 
     await user.save()
 
