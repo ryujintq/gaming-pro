@@ -9,13 +9,13 @@ dotenv.config() //use for .env file
 //start connection to database
 connectDB()
 
-//initialize app
+//initialize app and middleware
 const app = express()
 app.use(cors())
 app.use(express.json())
 
 //routes
-app.use('/api/users', userRoutes)
+app.use('/api/v1/users', userRoutes)
 
 //middleware (error middleware must come after routes)
 app.use(errorMiddleware)

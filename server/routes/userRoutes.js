@@ -2,8 +2,10 @@ import express from 'express'
 import User from '../models/userModal.js'
 import bcrypt from 'bcrypt'
 import createToken from '../utils/createToken.js'
-import { errorInvalidCredentials, errorUserExists } from '../utils/errors.js'
+import { errorInvalidCredentials } from '../utils/errors.js'
 import asyncHandler from '../middleware/asyncMiddleware.js'
+import matchPassword from '../utils/matchPassword.js'
+import authMiddleware from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
@@ -15,7 +17,7 @@ router.post('/login', asyncHandler(async (req, res, next) => {
     const { email, password } = req.body
     const user = await User.findOne({ email }).lean()
 
-    if (user && await user.matchPasswords(password)) {
+    if (user && await matchPassword(password, user.password)) {
         return res.status(200).json({
             status: 'success',
             data: { firstName: user.firstName, token: createToken(user._id) },
@@ -44,6 +46,5 @@ router.post('/signup', asyncHandler(async (req, res, next) => {
         message: 'login was successful'
     })
 }))
-
 
 export default router
