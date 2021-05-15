@@ -5,12 +5,12 @@ export const localStorageGet = (key) => {
     return localStorage.getItem(prefixedKey)
 }
 
-export const localStorageGet = (key, value) => {
+export const localStorageSet = (key, value) => {
     const prefixedKey = PREFIX + key
     return localStorage.setItem(prefixedKey, value)
 }
 
-export const localStorageGet = key => {
+export const localStorageRemove = key => {
     const prefixedKey = PREFIX + key
     return localStorage.removeItem(prefixedKey)
 }

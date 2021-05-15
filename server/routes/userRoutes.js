@@ -5,7 +5,6 @@ import createToken from '../utils/createToken.js'
 import { errorInvalidCredentials } from '../utils/errors.js'
 import asyncHandler from '../middleware/asyncMiddleware.js'
 import matchPassword from '../utils/matchPassword.js'
-import authMiddleware from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 

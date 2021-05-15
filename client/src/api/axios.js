@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { localStorageGet } from '../util/localStorage'
+
 const instance = axios.create({
     baseURL: 'http://192.168.100.11:5000/api/v1'
 })
