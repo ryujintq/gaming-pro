@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import userRoutes from './routes/userRoutes.js'
+import productRoutes from './routes/productRoutes.js'
 import connectDB from './utils/connectDB.js'
 import errorMiddleware from './middleware/errorMiddleware.js'
 import dotenv from 'dotenv'
@@ -16,6 +17,7 @@ app.use(express.json())
 
 //routes
 app.use('/api/v1/users', userRoutes)
+app.use('/api/v1/products', productRoutes)
 
 //middleware (error middleware must come after routes)
 app.use(errorMiddleware)

@@ -1,9 +1,15 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 main {
   min-height: 90vh;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover-grey {
+  transition: all 0.3s ease-in-out;
+}
+
+.hover-grey:hover {
+  background-color: rgb(238, 238, 238);
 }

@@ -1,7 +1,13 @@
 import { localStorageGet } from "../../util/localStorage"
 import { LOGIN, AUTH_FAIL, SIGN_OUT } from "../constants/authConstants"
 
-const authReducer = (state = { firstName: localStorageGet('firstName'), loading: false, token: localStorageGet('token'), error: '' }, action) => {
+const initialState = {
+    firstName: localStorageGet('firstName'),
+    loading: false,
+    token: localStorageGet('token')
+}
+
+const authReducer = (state = initialState, action) => {
     const { type, payload } = action
 
     switch (type) {

@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container'
 import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { signout } from '../redux/actions/authActions'
+import { clearProducts } from '../redux/actions/productActions'
 
 const Header = () => {
     const { token, firstName } = useSelector(state => state.auth)
@@ -14,15 +15,23 @@ const Header = () => {
     const handleSignOut = () => {
         dispatch(signout())
     }
+
+    const handleProductsClear = () => {
+        dispatch(clearProducts())
+    }
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
                 <LinkContainer to='/'>
-                    <Navbar.Brand>Gaming Pro</Navbar.Brand>
+                    <Navbar.Brand onClick={handleProductsClear}>Gaming Pro</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                     <Nav className="mr-auto">
+                        <LinkContainer to='/'>
+                            <Nav.Link onClick={handleProductsClear}>Home</Nav.Link>
+                        </LinkContainer>
                         {!token ?
                             (
                                 <>

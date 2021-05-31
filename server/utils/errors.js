@@ -8,3 +8,6 @@ export const errorUserExists = () => {
     return new ErrorResponse('User already exists', 400)
 }
 
+export const errorInvalidCategory = () => {
+    return new ErrorResponse('Invalid Category', 400)
+}

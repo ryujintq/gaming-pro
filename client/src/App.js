@@ -10,8 +10,9 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import Products from './pages/Products'
 
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/esm/Container'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Container>
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
+          <Route path='/products/:category' component={Products} />
           <Route path='/' component={Home} exact />
         </Container>
       </main>
